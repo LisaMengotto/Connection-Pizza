@@ -1,26 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
     const pizza = document.getElementById("pizza");
-    const inputBox = document.getElementById("input-box");
-    const nameInput = document.getElementById("nameInput");
-    const linkInput = document.getElementById("linkInput");
 
-    let selectedSlice = null;
+    if (!pizza) {
+        console.error("Pizza container not found!");
+        return;
+    }
+
     let connections = {};
+    let selectedSlice = null;
 
     // Create 8 slices dynamically
     for (let i = 1; i <= 8; i++) {
         let slice = document.createElement("div");
         slice.className = "slice";
         slice.dataset.index = i;
-        slice.addEventListener("click", () => openInputBox(i));
+        slice.style.position = "absolute";
+        slice.style.width = "50%";
+        slice.style.height = "50%";
+        slice.style.clipPath = "polygon(50% 50%, 100% 0, 0 0)";
+        slice.style.backgroundColor = "#ffcc00"; // Yellow slice
+        slice.style.border = "2px solid #ff8c00"; // Orange crust
+        slice.style.transformOrigin = "50% 50%";
+        slice.style.transition = "transform 0.3s ease-in-out";
+
+        // Rotate slices to form a full pizza
+        slice.style.transform = `rotate(${(i - 1) * 45}deg) translateX(50%) rotate(-${(i - 1) * 45}deg)`;
+
+        // Hover effect
+        slice.addEventListener("mouseover", function () {
+            slice.style.transform = `rotate(${(i - 1) * 45}deg) translateX(50%) rotate(-${(i - 1) * 45}deg) scale(1.1)`;
+        });
+
+        slice.addEventListener("mouseleave", function () {
+            slice.style.transform = `rotate(${(i - 1) * 45}deg) translateX(50%) rotate(-${(i - 1) * 45}deg)`;
+        });
+
+        // Click event to open input box
+        slice.addEventListener("click", function () {
+            selectedSlice = i;
+            openInputBox(i);
+        });
+
         pizza.appendChild(slice);
     }
 
     function openInputBox(index) {
-        selectedSlice = index;
+        const inputBox = document.getElementById("input-box");
+        const nameInput = document.getElementById("nameInput");
+        const linkInput = document.getElementById("linkInput");
+
         inputBox.style.display = "block";
 
-        // If slice already has data, prefill inputs
         if (connections[index]) {
             nameInput.value = connections[index].name;
             linkInput.value = connections[index].link;
@@ -33,13 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
     window.submitConnection = function () {
         if (selectedSlice === null) return;
 
-        const name = nameInput.value.trim();
-        const link = linkInput.value.trim();
+        const name = document.getElementById("nameInput").value.trim();
+        const link = document.getElementById("linkInput").value.trim();
 
         if (name && link) {
             connections[selectedSlice] = { name, link };
             updateSlice(selectedSlice, name, link);
-            inputBox.style.display = "none";
+            document.getElementById("input-box").style.display = "none";
         }
     };
 
