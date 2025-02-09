@@ -55,43 +55,10 @@ nav a:hover {
     position: relative;
 }
 
-/* Pizza Base */
+/* SVG Pizza */
 #pizza {
     width: 300px;
     height: 300px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: #ffcc00; /* Yellow base (cheese) */
-    border: 5px solid black; /* Outer border */
-}
-
-/* Individual Pizza Slices */
-.slice {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    background: linear-gradient(to top, #ffcc00 60%, #ff8c00 100%); /* Yellow cheese, orange crust */
-    clip-path: polygon(50% 50%, 100% 0, 0 0); /* Triangle shape */
-    transform-origin: 50% 50%;
-    border: 5px solid #ff8c00; /* Crust border */
-}
-
-/* Position Each Slice Radially */
-.slice:nth-child(1) { transform: rotate(0deg) translateY(-50%) rotate(0deg); }
-.slice:nth-child(2) { transform: rotate(45deg) translateY(-50%) rotate(-45deg); }
-.slice:nth-child(3) { transform: rotate(90deg) translateY(-50%) rotate(-90deg); }
-.slice:nth-child(4) { transform: rotate(135deg) translateY(-50%) rotate(-135deg); }
-.slice:nth-child(5) { transform: rotate(180deg) translateY(-50%) rotate(-180deg); }
-.slice:nth-child(6) { transform: rotate(225deg) translateY(-50%) rotate(-225deg); }
-.slice:nth-child(7) { transform: rotate(270deg) translateY(-50%) rotate(-270deg); }
-.slice:nth-child(8) { transform: rotate(315deg) translateY(-50%) rotate(-315deg); }
-
-/* Hover effect to slightly enlarge slices */
-.slice:hover {
-    transform: scale(1.05);
 }
 
 /* Input Box */
