@@ -63,3 +63,73 @@ section {
         margin: 10px 0;
     }
 }
+
+* Pizza Container */
+.pizza-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Pizza Shape */
+#pizza {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at center, #ffcc00 60%, #ff8c00 100%);
+    border-radius: 50%;
+    border: 4px solid black;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Slice Styling */
+.slice {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    clip-path: polygon(50% 50%, 100% 0, 0 0);
+    transform-origin: 50% 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Slice Hover Effect */
+.slice:hover {
+    transform: scale(1.1);
+}
+
+/* Position Each Slice */
+.slice:nth-child(1) { transform: rotate(0deg) translateX(50%) rotate(0deg); }
+.slice:nth-child(2) { transform: rotate(45deg) translateX(50%) rotate(-45deg); }
+.slice:nth-child(3) { transform: rotate(90deg) translateX(50%) rotate(-90deg); }
+.slice:nth-child(4) { transform: rotate(135deg) translateX(50%) rotate(-135deg); }
+.slice:nth-child(5) { transform: rotate(180deg) translateX(50%) rotate(-180deg); }
+.slice:nth-child(6) { transform: rotate(225deg) translateX(50%) rotate(-225deg); }
+.slice:nth-child(7) { transform: rotate(270deg) translateX(50%) rotate(-270deg); }
+.slice:nth-child(8) { transform: rotate(315deg) translateX(50%) rotate(-315deg); }
+
+/* Input Box */
+#input-box {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
