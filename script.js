@@ -9,30 +9,35 @@ document.addEventListener("DOMContentLoaded", function () {
     let connections = {};
     let selectedSlice = null;
 
-    // Create 8 slices dynamically
+    // Create 8 pizza slice emojis dynamically
     for (let i = 1; i <= 8; i++) {
         let slice = document.createElement("div");
         slice.className = "slice";
         slice.dataset.index = i;
+        slice.innerHTML = "🍕"; // Emoji as the slice
         slice.style.position = "absolute";
-        slice.style.width = "50%";
-        slice.style.height = "50%";
-        slice.style.clipPath = "polygon(50% 50%, 100% 0, 0 0)";
-        slice.style.backgroundColor = "#ffcc00"; // Yellow slice
-        slice.style.border = "2px solid #ff8c00"; // Orange crust
-        slice.style.transformOrigin = "50% 50%";
+        slice.style.fontSize = "40px";
+        slice.style.width = "50px";
+        slice.style.height = "50px";
+        slice.style.display = "flex";
+        slice.style.alignItems = "center";
+        slice.style.justifyContent = "center";
         slice.style.transition = "transform 0.3s ease-in-out";
 
-        // Rotate slices to form a full pizza
-        slice.style.transform = `rotate(${(i - 1) * 45}deg) translateX(50%) rotate(-${(i - 1) * 45}deg)`;
+        // Position each slice radially
+        let angle = (i - 1) * 45; // Spaced evenly in a circular pattern
+        let radius = 90; // Distance from center
+        let x = Math.cos(angle * (Math.PI / 180)) * radius;
+        let y = Math.sin(angle * (Math.PI / 180)) * radius;
+        slice.style.transform = `translate(${x}px, ${y}px)`;
 
-        // Hover effect
+        // Hover effect to enlarge the slice
         slice.addEventListener("mouseover", function () {
-            slice.style.transform = `rotate(${(i - 1) * 45}deg) translateX(50%) rotate(-${(i - 1) * 45}deg) scale(1.1)`;
+            slice.style.transform = `translate(${x}px, ${y}px) scale(1.2)`;
         });
 
         slice.addEventListener("mouseleave", function () {
-            slice.style.transform = `rotate(${(i - 1) * 45}deg) translateX(50%) rotate(-${(i - 1) * 45}deg)`;
+            slice.style.transform = `translate(${x}px, ${y}px)`;
         });
 
         // Click event to open input box
@@ -77,11 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let slice = document.querySelector(`.slice[data-index="${index}"]`);
         if (slice) {
             slice.innerHTML = `
-                <a href="${link}" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none;">
-                    <span style="display:flex; align-items:center; justify-content:center; font-size:12px; color:white; text-shadow:1px 1px 3px black;">${name}</span>
+                <a href="${link}" target="_blank" style="text-decoration:none; font-size:40px;">
+                    🍕<br><span style="font-size:12px; color:white;">${name}</span>
                 </a>
             `;
-            slice.style.backgroundColor = "#FF5733"; // Change slice color when filled
         }
     }
 });
