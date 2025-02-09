@@ -77,28 +77,28 @@ section {
     position: absolute;
     width: 50%;
     height: 50%;
-    background: linear-gradient(to top, #ffcc00 70%, #ff8c00 100%); /* Yellow base, orange crust */
+    background: linear-gradient(to top, #ffcc00 70%, #ff8c00 100%); /* Yellow cheese base, orange crust */
     clip-path: polygon(50% 50%, 100% 0, 0 0); /* Triangle shape */
-    transform-origin: bottom center;
+    transform-origin: center center;
     transition: transform 0.3s ease-in-out;
-    border-top-left-radius: 50px; /* Curved crust */
-    border-top-right-radius: 50px; /* Curved crust */
+    border-top-left-radius: 30px; /* Rounded crust */
+    border-top-right-radius: 30px; /* Rounded crust */
 }
 
-/* Hover effect to enlarge slices */
+/* Position Each Slice Radially with Perfect Alignment */
+.slice:nth-child(1) { transform: rotate(0deg); }
+.slice:nth-child(2) { transform: rotate(45deg); }
+.slice:nth-child(3) { transform: rotate(90deg); }
+.slice:nth-child(4) { transform: rotate(135deg); }
+.slice:nth-child(5) { transform: rotate(180deg); }
+.slice:nth-child(6) { transform: rotate(225deg); }
+.slice:nth-child(7) { transform: rotate(270deg); }
+.slice:nth-child(8) { transform: rotate(315deg); }
+
+/* Hover effect to slightly enlarge slices */
 .slice:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
-
-/* Position Each Slice Radially */
-.slice:nth-child(1) { transform: rotate(0deg) translateX(50%) rotate(0deg); }
-.slice:nth-child(2) { transform: rotate(45deg) translateX(50%) rotate(-45deg); }
-.slice:nth-child(3) { transform: rotate(90deg) translateX(50%) rotate(-90deg); }
-.slice:nth-child(4) { transform: rotate(135deg) translateX(50%) rotate(-135deg); }
-.slice:nth-child(5) { transform: rotate(180deg) translateX(50%) rotate(-180deg); }
-.slice:nth-child(6) { transform: rotate(225deg) translateX(50%) rotate(-225deg); }
-.slice:nth-child(7) { transform: rotate(270deg) translateX(50%) rotate(-270deg); }
-.slice:nth-child(8) { transform: rotate(315deg) translateX(50%) rotate(-315deg); }
 
 /* Input Box */
 #input-box {
