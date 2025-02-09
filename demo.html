@@ -18,18 +18,17 @@
         <h1>🍕 Connection Pizza 🍕</h1>
     </header>
 
-   <section class="pizza-container">
-    <div id="pizza" style="
-        width: 300px; 
-        height: 300px; 
-        background-color: yellow; 
-        border-radius: 50%; 
-        border: 4px solid black;
-        display: flex;
-        align-items: center;
-        justify-content: center;">
-        <p style="font-weight: bold; font-size: 18px;">🍕 Pizza Placeholder 🍕</p>
-    </div>
+<section class="pizza-container">
+    <svg id="pizza" viewBox="-150 -150 300 300" width="300" height="300">
+        <!-- 8 slices will be added dynamically -->
+    </svg>
+</section>
+
+<section id="input-box" class="hidden">
+    <h2>Add Connection</h2>
+    <input type="text" id="nameInput" placeholder="Enter name">
+    <input type="url" id="linkInput" placeholder="Enter LinkedIn URL">
+    <button onclick="submitConnection()">Submit</button>
 </section>
 
     <section id="input-box" class="hidden">
