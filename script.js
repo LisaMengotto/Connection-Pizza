@@ -8,23 +8,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let connections = {};
     let selectedSlice = null;
+    const numSlices = 8;
+    const radius = 100;
 
-    // Create 8 pizza slices dynamically
-    for (let i = 1; i <= 8; i++) {
-        let slice = document.createElement("div");
-        slice.className = "slice";
-        slice.dataset.index = i;
+    // Function to create SVG paths for slices
+    function createSlice(index) {
+        const angle = (2 * Math.PI) / numSlices;
+        const startAngle = index * angle;
+        const endAngle = startAngle + angle;
 
-        // Set rotation for each slice (aligns perfectly in a circle)
-        let angle = (i - 1) * 45; // 8 slices, 360° divided by 8
-        slice.style.transform = `rotate(${angle}deg) translateY(-50%) rotate(-${angle}deg)`;
+        const x1 = radius * Math.cos(startAngle);
+        const y1 = radius * Math.sin(startAngle);
+        const x2 = radius * Math.cos(endAngle);
+        const y2 = radius * Math.sin(endAngle);
+
+        const largeArcFlag = angle > Math.PI ? 1 : 0;
+        const pathData = `
+            M 0 0 
+            L ${x1} ${y1} 
+            A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} 
+            Z
+        `;
+
+        let slice = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        slice.setAttribute("d", pathData);
+        slice.setAttribute("fill", "#ffcc00"); // Yellow cheese
+        slice.setAttribute("stroke", "#ff8c00"); // Orange crust
+        slice.setAttribute("stroke-width", "5");
+        slice.setAttribute("data-index", index);
+        slice.style.transition = "transform 0.3s ease-in-out";
+        slice.style.cursor = "pointer";
+
+        // Hover effect
+        slice.addEventListener("mouseover", function () {
+            slice.style.transform = "scale(1.1)";
+        });
+        slice.addEventListener("mouseleave", function () {
+            slice.style.transform = "scale(1)";
+        });
 
         // Click event to open input box
         slice.addEventListener("click", function () {
-            selectedSlice = i;
-            openInputBox(i);
+            selectedSlice = index;
+            openInputBox(index);
         });
 
+        return slice;
+    }
+
+    // Generate 8 slices
+    for (let i = 0; i < numSlices; i++) {
+        let slice = createSlice(i);
         pizza.appendChild(slice);
     }
 
@@ -58,13 +92,17 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function updateSlice(index, name, link) {
-        let slice = document.querySelector(`.slice[data-index="${index}"]`);
+        let slice = document.querySelector(`path[data-index="${index}"]`);
         if (slice) {
-            slice.innerHTML = `
-                <a href="${link}" target="_blank" style="text-decoration:none; color:black; font-weight:bold;">
-                    ${name}
-                </a>
-            `;
+            slice.setAttribute("fill", "#FF5733"); // Change slice color when filled
+            let text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.setAttribute("x", 0);
+            text.setAttribute("y", -radius / 2);
+            text.setAttribute("fill", "black");
+            text.setAttribute("font-size", "10px");
+            text.setAttribute("text-anchor", "middle");
+            text.textContent = name;
+            pizza.appendChild(text);
         }
     }
 });
