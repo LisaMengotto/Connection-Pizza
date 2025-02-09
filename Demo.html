@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection Pizza - Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>🍕 Connection Pizza - Demo</h1>
+        <nav>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">🍕 About</a>
+            <a href="demo.html">🎮 Demo</a>
+        </nav>
+    </header>
+
+    <section class="pizza-container">
+        <div id="pizza">
+            <!-- 8 slices will be created dynamically by JavaScript -->
+        </div>
+    </section>
+
+    <section id="input-box" class="hidden">
+        <h2>Add Connection</h2>
+        <input type="text" id="nameInput" placeholder="Enter name">
+        <input type="url" id="linkInput" placeholder="Enter LinkedIn URL">
+        <button onclick="submitConnection()">Submit</button>
+    </section>
+</body>
+</html>
