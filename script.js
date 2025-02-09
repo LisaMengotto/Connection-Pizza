@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Set rotation for each slice (aligns perfectly in a circle)
         let angle = (i - 1) * 45; // 8 slices, 360° divided by 8
-        slice.style.transform = `rotate(${angle}deg)`;
+        slice.style.transform = `rotate(${angle}deg) translateY(-50%) rotate(-${angle}deg)`;
 
         // Click event to open input box
         slice.addEventListener("click", function () {
