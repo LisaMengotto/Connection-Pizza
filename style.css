@@ -1,18 +1,16 @@
-/* Apply styles to the whole page */
 body {
     font-family: Arial, sans-serif;
-    background-color: #007BFF; /* Blue background */
-    color: white; /* White text */
-    text-align: center; /* Center text */
-    height: 100vh; /* Full viewport height */
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center vertically */
-    align-items: center; /* Center horizontally */
-    margin: 0; /* Remove default margin */
+    justify-content: center;
+    align-items: center;
+    margin: 0;
 }
 
-/* Header styling */
 header {
     position: absolute;
     top: 20px;
@@ -20,32 +18,6 @@ header {
     text-align: center;
 }
 
-h1 {
-    font-size: 75px;
-}
-
-/* Navigation menu */
-nav {
-    margin-top: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0 15px;
-    padding: 10px 20px;
-    border: 2px solid white;
-    border-radius: 25px;
-    transition: background 0.3s;
-}
-
-nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Pizza Container */
 .pizza-container {
     display: flex;
     justify-content: center;
@@ -55,24 +27,11 @@ nav a:hover {
     position: relative;
 }
 
-/* SVG Pizza */
 #pizza {
     width: 300px;
     height: 300px;
 }
 
-/* Input Box */
-#input-box {
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    display: none;
-}
-
-/* Hidden Class */
 .hidden {
     display: none;
 }
