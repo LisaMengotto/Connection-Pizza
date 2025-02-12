@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const pizza = document.getElementById("pizza");
+    const connectionsTableBody = document.getElementById("connectionsTableBody");
 
     if (!pizza) {
         console.error("Pizza container not found!");
@@ -36,16 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         slice.setAttribute("stroke", "#ff8c00"); // Orange crust
         slice.setAttribute("stroke-width", "5");
         slice.setAttribute("data-index", index);
-        slice.style.transition = "transform 0.3s ease-in-out";
         slice.style.cursor = "pointer";
-
-        // Hover effect
-        slice.addEventListener("mouseover", function () {
-            slice.style.transform = "scale(1.1)";
-        });
-        slice.addEventListener("mouseleave", function () {
-            slice.style.transform = "scale(1)";
-        });
 
         // Click event to open input box
         slice.addEventListener("click", function () {
@@ -65,15 +57,24 @@ document.addEventListener("DOMContentLoaded", function () {
     function openInputBox(index) {
         const inputBox = document.getElementById("input-box");
         const nameInput = document.getElementById("nameInput");
+        const titleInput = document.getElementById("titleInput");
+        const noteInput = document.getElementById("noteInput");
+        const toppingInput = document.getElementById("toppingInput");
         const linkInput = document.getElementById("linkInput");
 
         inputBox.style.display = "block";
 
         if (connections[index]) {
             nameInput.value = connections[index].name;
+            titleInput.value = connections[index].title;
+            noteInput.value = connections[index].note;
+            toppingInput.value = connections[index].topping;
             linkInput.value = connections[index].link;
         } else {
             nameInput.value = "";
+            titleInput.value = "";
+            noteInput.value = "";
+            toppingInput.value = "";
             linkInput.value = "";
         }
     }
@@ -82,27 +83,49 @@ document.addEventListener("DOMContentLoaded", function () {
         if (selectedSlice === null) return;
 
         const name = document.getElementById("nameInput").value.trim();
+        const title = document.getElementById("titleInput").value.trim();
+        const note = document.getElementById("noteInput").value.trim();
+        const topping = document.getElementById("toppingInput").value.trim();
         const link = document.getElementById("linkInput").value.trim();
 
         if (name && link) {
-            connections[selectedSlice] = { name, link };
-            updateSlice(selectedSlice, name, link);
+            connections[selectedSlice] = { name, title, note, topping, link };
+            updateSlice(selectedSlice, name, topping);
+            updateTable();
             document.getElementById("input-box").style.display = "none";
         }
     };
 
-    function updateSlice(index, name, link) {
+    function updateSlice(index, name, topping) {
         let slice = document.querySelector(`path[data-index="${index}"]`);
         if (slice) {
             slice.setAttribute("fill", "#FF5733"); // Change slice color when filled
+            
             let text = document.createElementNS("http://www.w3.org/2000/svg", "text");
             text.setAttribute("x", 0);
             text.setAttribute("y", -radius / 2);
             text.setAttribute("fill", "black");
             text.setAttribute("font-size", "10px");
             text.setAttribute("text-anchor", "middle");
-            text.textContent = name;
+            text.textContent = `${topping} ${name}`;
             pizza.appendChild(text);
         }
+    }
+
+    function updateTable() {
+        connectionsTableBody.innerHTML = "";
+        Object.keys(connections).forEach(index => {
+            let connection = connections[index];
+            let row = `
+                <tr>
+                    <td>Slice ${parseInt(index) + 1}</td>
+                    <td>${connection.topping}</td>
+                    <td>${connection.name}</td>
+                    <td>${connection.title}</td>
+                    <td>${connection.note}</td>
+                </tr>
+            `;
+            connectionsTableBody.innerHTML += row;
+        });
     }
 });
