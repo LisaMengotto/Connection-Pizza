@@ -26,16 +26,50 @@
 
 <section id="input-box" class="hidden">
     <h2>Add Connection</h2>
+    <label for="nameInput">Name:</label>
     <input type="text" id="nameInput" placeholder="Enter name">
+    
+    <label for="titleInput">Title:</label>
+    <input type="text" id="titleInput" placeholder="Enter job title">
+    
+    <label for="noteInput">Note:</label>
+    <input type="text" id="noteInput" placeholder="Add a note">
+    
+    <label for="toppingInput">Topping:</label>
+    <select id="toppingInput">
+        <option value="🍅">Tomato</option>
+        <option value="🫑">Pepper</option>
+        <option value="🧀">Cheese</option>
+        <option value="🍄">Mushroom</option>
+        <option value="🌿">Herbs</option>
+    </select>
+    
+    <label for="linkInput">LinkedIn Profile:</label>
     <input type="url" id="linkInput" placeholder="Enter LinkedIn URL">
+    
     <button onclick="submitConnection()">Submit</button>
 </section>
 
-    <section id="input-box" class="hidden">
-        <h2>Add Connection</h2>
-        <input type="text" id="nameInput" placeholder="Enter name">
-        <input type="url" id="linkInput" placeholder="Enter LinkedIn URL">
-        <button onclick="submitConnection()">Submit</button>
-    </section>
+<!-- Table to Display Data Below -->
+<section id="connections-list">
+    <h2>Connection List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Slice</th>
+                <th>Topping</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Note</th>
+            </tr>
+        </thead>
+        <tbody id="connectionsTableBody">
+            <!-- Rows will be added dynamically -->
+        </tbody>
+    </table>
+</section>
+
+
+    
 </body>
 </html>
